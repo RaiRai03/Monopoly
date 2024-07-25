@@ -1,0 +1,15 @@
+.space{
+    width: 100px;
+    height: 150px;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 3px solid black;
+  }
+
+img {
+  object-fit: contain;
+  object-position: center;
+}

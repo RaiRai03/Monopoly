@@ -16,6 +16,9 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
+default:
+  image: node:20.9.0
+
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
@@ -38,9 +41,8 @@ lint-test-job:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
   script:
     - echo "Linting code... This will take about 10 seconds."
-    - sleep 1
-    - echo "this code is unacceptable."
-    - exit 1
+    - npm CI/CD
+    - npx eslint src/**
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
