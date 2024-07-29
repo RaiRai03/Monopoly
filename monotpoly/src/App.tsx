@@ -1,60 +1,34 @@
-import { useState } from "react";
-import classes from "./App.module.css";
-import "./App.global.css";
-import PropertySpace from "./PropertySpace/PropertySpace";
-import { Space } from "./Space/Space";
-import { 
-  PropertySpaceData,
-  SpaceData, 
-  Player, 
-  StatefulPropertySpace,
-  StatefulSpace,
-} from "./common/types";
-import { gameboard } from "./board.ts";
-
-const player: Player = {
-  name: "player",
-  token: "♟︎",
-  color: "purple",
-};
-const player2: Player = {
-  name: "player2",
-  token: "♟︎",
-  color: "orange",
+import './App.css'
+const boardwalkData = {
+  region: "blue",
+  propertyName: "Boardwalk",
+  price: 400,
 };
 
-function isPropertySpace(
-  space: SpaceData | PropertySpaceData
-): space is PropertySpaceData {
-  return (space as PropertySpaceData).region !== undefined;
+const parkPlaceData = {
+  region: "blue",
+  propertyName: "Park Place",
+  price: 350,
 }
-function makeStateful(space: SpaceData | PropertySpaceData){
-  const statefulSpace:  StatefulSpace | StatefulPropertySpace = {
-    ...space,
-    players: new Array(),
-  };
-  return statefulSpace;
-}
-const statefulBoard = gameboard.map(makeStateful);
-statefulBoard[0].players = [player, player2];
 
-function Board() {
-  const [boardState, setBoardState] = useState(statefulBoard);
-  const step = ()=>{};
+interface SpaceProps {
+  region: string;
+  propertyName: string;
+  price: number;
+}
+
+function Space({ region, propertyName, price }: SpaceProps) {
   return (
-    <div className={classes["grid-wrapper"]}>
-      {boardState.map((space, index) =>
-        isPropertySpace(space) ? (
-          <PropertySpace index={index} key={index} {...space} />
-        ) : ( 
-          <Space index={index} key={index} {...space} />
-        )
-      )}
-      <div className="feedback">
-        <button onClick={step}> get walkin</button>
-      </div>
+    <div className="property-space">
+<div className="region" style={{ backgroundColor: region }}></div>
+      <h3 className="property-name">{propertyName}</h3>
+      <span className="price">Price: ${price}</span>
     </div>
   );
+}
+function Board() {
+  const spaces = [parkPlaceData, boardwalkData];
+  return <> {spaces.map((space) => Space(space))}</>;
 }
 
 export default Board;
