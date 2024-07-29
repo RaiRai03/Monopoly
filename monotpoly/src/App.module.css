@@ -3,3 +3,13 @@
   grid-template-columns: repeat(8, 100px);
   grid-template-rows: repeat(6, 150px);
 }
+.feedback {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: 2/2/6/8;
+}
+button{
+  
+}
