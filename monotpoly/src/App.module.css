@@ -3,86 +3,13 @@
   grid-template-columns: repeat(8, 100px);
   grid-template-rows: repeat(6, 150px);
 }
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.feedback {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: 2/2/6/8;
 }
-
-* {
-  box-sizing: border-box;
-}
-
-.boardspace-0 {
-  grid-area: 1/1;
-}
-.boardspace-1 {
-  grid-area: 1/2;
-}
-.boardspace-2 {
-  grid-area: 1/3;
-}
-.boardspace-3 {
-  grid-area: 1/4;
-}
-.boardspace-4 {
-  grid-area: 1/5;
-}
-.boardspace-5 {
-  grid-area: 1/6;
-}
-.boardspace-6 {
-  grid-area: 1/7;
-}
-.boardspace-7 {
-  grid-area: 1/8;
-}
-.boardspace-8 {
-  grid-area: 2/8;
-}
-.boardspace-9 {
-  grid-area: 3/8;
-}
-.boardspace-10 {
-  grid-area: 4/8;
-}
-.boardspace-11 {
-  grid-area: 5/8;
-}
-.boardspace-12 {
-  grid-area: 6/8;
-}
-.boardspace-13 {
-  grid-area: 6/7;
-}
-.boardspace-14 {
-  grid-area: 6/6;
-}
-.boardspace-15 {
-  grid-area: 6/5;
-}
-.boardspace-16 {
-  grid-area: 6/4;
-}
-.boardspace-17 {
-  grid-area: 6/3;
-}
-.boardspace-18 {
-  grid-area: 6/2;
-}
-.boardspace-19 {
-  grid-area: 6/1;
-}
-.boardspace-20 {
-  grid-area: 5/1;
-}
-.boardspace-21 {
-  grid-area: 4/1;
-}
-.boardspace-22 {
-  grid-area: 3/1;
-}
-.boardspace-23 {
-  grid-area: 2/1;
+buttons {
+  width: 150px;
 }

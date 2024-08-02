@@ -2,11 +2,22 @@ import { FC } from "react";
 import { SpaceProps } from "../common/types";
 
 import classes from "./Space.module.css"
-
-export const Space: FC<SpaceProps> = ({name, image, index}:SpaceProps)=> {
+import PlayerToken from "../Player Token/PlayerToken.tsx";
+export const Space: FC<SpaceProps> = ({
+    name,
+    image,
+    index,
+    players,
+}:SpaceProps)=> {
     return (
         <div className={classes.space + ` boardspace-${index}`}>
             <img src={image} alt={name} />
+            <div>
+                {players.map((player, index) => (
+                    <PlayerToken {...player} key={index} />
+                ))}
+            </div>
         </div>
     );
 };
+
