@@ -1,16 +1,15 @@
-import {useState} from "react";
-import classes from  './App.module.css';
-import "./App.global.css";
-import PropertySpace from './PropertySpace/PropertySpace';
-import { Space } from './Space/Space';
+import Board from "../Board/Board";
+import GameGrid from "../GameGrid/GameGrid";
+import PlayerinfoSection from "../PlayerinfoSection/PlayerinfoSection";
 import { 
-  PropertySpaceData, 
-  SpaceData, 
-  Player,
-  StatefulPropertySpace,
-  StatefulSpace,
-} from './common/types';
-import { gameboard } from './board';
+    PropertySpaceData, 
+    SpaceData, 
+    Player,
+    StatefulPropertySpace,
+    StatefulSpace,
+  } from '../common/types';
+import { gameboard } from '../board';
+import { useState } from "react";
 
 const player: Player = {
   name: "player",
@@ -23,11 +22,6 @@ const player2: Player = {
   color: "orange",
 };
 
-function isPropertySpace(
-  space: SpaceData | PropertySpaceData
-): space is PropertySpaceData {
-  return (space as PropertySpaceData).region !== undefined;
-};
 
 function makeStateful(space: SpaceData | PropertySpaceData) {
   const stateFullSpace: StatefulSpace | StatefulPropertySpace = {
@@ -48,9 +42,9 @@ function remove<T>(item: T, arr: Array<T>){
   return [...arr]
 }
 
-function Board() {
+export default function Game() {
   const [boardState, setBoardState] = useState(statefulBoard);
-  const step = ()=>{
+  const step = () => {
     const currentIndex = boardState.findIndex(space =>
       space.players.includes(player)
     );
@@ -60,20 +54,13 @@ function Board() {
     nextSpace.players= [...nextSpace.players, player];
     setBoardState([...boardState]);
   };
-  return (
-    <div className={classes['grid-wrapper']}>
-{boardState.map((space, index) => 
-      isPropertySpace(space) ? (
-        <PropertySpace index={index} key={index} {...space} />
-      ) : (
-        <Space index={index} key={index} {...space}/>
-      )
-    )}
-    <div className={classes.feedback}>
-        <button onClick={step}> get walking</button>
-      </div>
-    </div>
-  );
-};
 
-export default Board;
+  const actions = { step };
+
+    return (
+     <GameGrid>
+        <PlayerinfoSection />
+        <Board boardState={boardState} actions={actions} />
+    </GameGrid>  
+  );
+}
