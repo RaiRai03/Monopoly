@@ -8,11 +8,13 @@ export const gameboard: (SpaceData | PropertySpaceData) [] = [
     region: "brown",
     name: "Carthage",
     price: 60,
+    rent: 20,
   },
   {
     region: "brown",
     name: "Galesburg",
     price: 80,
+    rent: 25,
   },
   {
     name: "Chance",

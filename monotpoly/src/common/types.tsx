@@ -4,7 +4,7 @@ export interface Player {
   color: string;
   ownedProperties: PropertySpaceData[];
   money: number;
-  currentPostion: number;
+  currentPosition: number;
 }
 
 interface HasPlayers {
@@ -19,32 +19,31 @@ export interface SpaceData {
 }
 export type StatefulSpace = SpaceData & HasPlayers;
 export type SpaceProps = StatefulSpace & Indexed;
+
+export function isPropertySpace(
+  space: SpaceData | PropertySpaceData
+): space is PropertySpaceData {
+  return (space as PropertySpaceData).region !== undefined;
+}
+
 export interface PropertySpaceData extends SpaceData {
   region: string;
   price: number;
   owner?: Player;
   rent: number;
 }
+
 export type StatefulPropertySpace = PropertySpaceData & HasPlayers;
 export type PropertySpaceProps = StatefulPropertySpace & Indexed;
 
-export interface TurnState{
-  currentIndex: any;
+export interface TurnState {
   currentPlayerIndex: number;
   currentPlayerHasMoved: boolean;
-  offerToBuy: Boolean;
+  offerToBuy: boolean;
 }
 
 export interface GameState {
   players: Player[];
-  board: Array<StatefulSpace | StatefulPropertySpace>
+  board: Array<StatefulSpace | StatefulPropertySpace>;
   turn: TurnState;
 }
-
-// export interface SpaceProps {
-//     name: string;
-//     image?: string;
-//     index: number;
-// }
-// export type SpaceData = Omit<SpaceProps, "index">
-// export type PropertySpaceData = Omit<PropertySpaceProps, "index">

@@ -1,9 +1,8 @@
-import { FC } from "react";
-import { SpaceProps } from "../common/types";
-
 import classes from "./Space.module.css"
-import PlayerToken from "../Player Token/PlayerToken.tsx";
-export const Space: FC<SpaceProps> = ({
+import PlayerToken from "../Player Token/PlayerToken";
+import { SpaceProps } from "../common/types";
+import { FC } from "react";
+const Space: FC<SpaceProps> = ({
     name,
     image,
     index,
@@ -21,3 +20,4 @@ export const Space: FC<SpaceProps> = ({
     );
 };
 
+export default Space;
