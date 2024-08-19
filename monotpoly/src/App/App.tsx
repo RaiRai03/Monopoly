@@ -1,12 +1,12 @@
 import Shell  from "../Shell/Shell";
 import Game from "../Game/Game";
 import Auth from "../Auth/Auth";
-export default function App() {
-  const isLoggedIn = false
+import { ProvideAuth, useAuth } from "../Auth/useAuth";
+function App() {
+  const {user} =useAuth()
   return(
     <>
-    {isLoggedIn ? (
-
+    {user?.name ? (
       <Shell>
       <Game />
     </Shell>
@@ -16,3 +16,11 @@ export default function App() {
     </>
   );
 } 
+
+export default function Contextualized(){
+  return(
+    <ProvideAuth>
+      <App />
+    </ProvideAuth>
+  );
+}

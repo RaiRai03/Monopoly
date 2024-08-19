@@ -27,7 +27,7 @@ app.post("/register", async (req, res) => {
 app.post("/login", async(req,res)=>{
   const {username, password} = req.body
   const user = await User.findOne({username})
-  if(!user) res.sendStatus(404)
+  if(!user) return res.sendStatus(404)
   const handler = (isValidPassword: boolean) => {
     if(isValidPassword) {
      res.json({

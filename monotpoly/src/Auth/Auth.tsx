@@ -1,11 +1,13 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import classes from "./Auth.module.css";
 import axios from "axios";
+import { useAuth } from "./useAuth";
 
 interface LoginResponse {
   jwt: string;
 }
 function Login() {
+    const { setUser }= useAuth();
   const usernameRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
   const logIn = async (e: FormEvent) => {
@@ -16,7 +18,10 @@ function Login() {
       username,
       password,
     });
-    console.log(response.data.jwt);
+    const user = response.data;
+    if(user.jwt) {
+      setUser({name: username, authToken: user.jwt})
+    }
   };
   return ( 
    <form className={classes["auth-form"]} onSubmit={logIn}>

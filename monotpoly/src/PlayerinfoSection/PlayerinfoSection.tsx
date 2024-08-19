@@ -1,3 +1,4 @@
+import { useAuth } from "../Auth/useAuth.tsx";
 import { Player, TurnState } from "../common/types";
 import classes from "./PlayerinfoSection.tsx";
 
@@ -19,9 +20,11 @@ export default function PlayerInfoSection({players, turn, }: PlayerInfoSectionPr
 }
 
 function PlayerInfoCard({ name, money, ownedProperties }: Player) {
+    const {user}= useAuth()
+    const itsMe = user?.name == name
     return (
         <div className={classes.card}>
-            <h2 className={classes.name}>{name}</h2>
+            <h2 className={ itsMe ? classes.me : classes.name}>{name}</h2>
             <p>{name}'s Funds: ${money}</p>
             <ul>
                 Properties Owned:
