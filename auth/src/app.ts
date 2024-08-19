@@ -13,11 +13,12 @@ app. get("/", ( req, res,) => {
 });
 
 app.post("/register", async (req, res) => {
+  console.log(req.body);
   try {
     const { username, password } = req.body;
     const user = await new User({ username, password });
     await user.save();
-    res.sendStatus(200);
+    res.json({ userCreated: user.username });
   } catch (e) {
     res.sendStatus(500);
   }
